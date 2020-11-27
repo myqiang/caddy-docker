@@ -1,11 +1,14 @@
 #
 # Builder
 #
-FROM abiosoft/caddy:builder as builder
+FROM rqiang/caddy-docker:builder as builder
 
 ARG version="1.0.3"
 ARG plugins="git,cors,realip,expires,cache,cloudflare"
 ARG enable_telemetry="true"
+
+RUN go env -w GO111MODULE=on
+RUN go env -w GOPROXY=https://goproxy.cn,direct
 
 # process wrapper
 RUN go get -v github.com/abiosoft/parent

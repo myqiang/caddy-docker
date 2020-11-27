@@ -286,6 +286,10 @@ EOF
 # check for modules support
 # export GO111MODULE=on
 
+# check for modules support
+go_mod=false
+[ -f /go/src/$IMPORT/go.mod ] && export GO111MODULE=on && go_mod=true
+
 # add plugins and telemetry
 stage "customising plugins and telemetry"
 if $go_mod; then module; else legacy; fi
